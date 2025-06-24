@@ -1,0 +1,10 @@
+Linux & Cloud Shell
+-------------------
+aws kms encrypt --region us-east-1 --key-id 134aed96-b7be-4263-a077-a3b17c0ed8c0 --plaintext file://secrets.txt --output text --query CiphertextBlob --cli-binary-format raw-in-base64-out > secrets.base64.txt
+
+base64 -i -d secrets.base64.txt > secrets.encrypted.txt
+
+aws kms decrypt --region us-east-1 --ciphertext-blob fileb://secrets.encrypted.txt --output text --query Plaintext > secrets.decrypted.base64
+
+base64 -i -d secrets.decrypted.base64 > secrets.decrypted.txt
+
